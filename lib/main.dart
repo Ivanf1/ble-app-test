@@ -41,6 +41,7 @@ class MyHomePage extends StatefulWidget {
   final FlutterBlue flutterBlue = FlutterBlue.instance;
   final List<BluetoothDevice> devicesList = <BluetoothDevice>[];
   final Map<Guid, List<int>> readValues = <Guid, List<int>>{};
+  final Map<Guid, int> notifyValues = <Guid, int>{};
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -213,12 +214,16 @@ class _MyHomePageState extends State<MyHomePage> {
               child:
                   const Text('NOTIFY', style: TextStyle(color: Colors.white)),
               onPressed: () async {
-                characteristic.value.listen((value) {
-                  setState(() {
-                    widget.readValues[characteristic.uuid] = value;
+                if (!characteristic.isNotifying) {
+                  characteristic.value.listen((value) {
+                    var listOfIntToString = value.join("");
+                    int listOfIntToInt = int.parse(listOfIntToString);
+                    setState(() {
+                      widget.notifyValues[characteristic.uuid] = listOfIntToInt;
+                    });
                   });
-                });
-                await characteristic.setNotifyValue(true);
+                  await characteristic.setNotifyValue(true);
+                }
               },
             ),
           ),
@@ -254,7 +259,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Row(
                   children: <Widget>[
-                    Text('Value: ${widget.readValues[characteristic.uuid]}'),
+                    Text(
+                        'Value: ${characteristic.isNotifying ? widget.notifyValues[characteristic.uuid] : widget.readValues[characteristic.uuid]}'),
                   ],
                 ),
                 const Divider(),
