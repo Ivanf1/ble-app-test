@@ -146,7 +146,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   var listOfIntToString = String.fromCharCodes(
                       value, 0, value.lastWhere((element) => element == 0));
                   value.removeWhere((element) => element == 0);
-                  var l = utf8.decode(value);
+                  // var l = utf8.decode(value);
+                  var l = value.toString();
+
+                  for (int e in value) {
+                    print(e);
+                  }
+
                   setState(() {
                     widget.readValues[characteristic.uuid] = l;
                   });
