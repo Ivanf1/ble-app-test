@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
     for (BluetoothDevice device in widget.devicesList) {
       containers.add(
         SizedBox(
-          height: 150,
+          height: 160,
           child: Row(
             children: <Widget>[
               Expanded(
