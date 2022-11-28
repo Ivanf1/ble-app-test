@@ -143,7 +143,8 @@ class _MyHomePageState extends State<MyHomePage> {
               child: const Text('READ', style: TextStyle(color: Colors.white)),
               onPressed: () async {
                 var sub = characteristic.value.listen((value) {
-                  var listOfIntToString = String.fromCharCodes(value);
+                  var listOfIntToString = String.fromCharCodes(
+                      value, 0, value.lastWhere((element) => element == 0));
                   setState(() {
                     widget.readValues[characteristic.uuid] = listOfIntToString;
                   });
