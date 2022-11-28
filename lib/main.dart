@@ -95,22 +95,22 @@ class _MyHomePageState extends State<MyHomePage> {
               TextButton(
                 child: const Text(
                   'Connect',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.black),
                 ),
                 onPressed: () async {
-                  // widget.flutterBlue.stopScan();
-                  // try {
-                  //   await device.connect();
-                  // } on PlatformException catch (e) {
-                  //   if (e.code != 'already_connected') {
-                  //     rethrow;
-                  //   }
-                  // } finally {
-                  //   _services = await device.discoverServices();
-                  // }
-                  // setState(() {
-                  //   _connectedDevice = device;
-                  // });
+                  widget.flutterBlue.stopScan();
+                  try {
+                    await device.connect();
+                  } on PlatformException catch (e) {
+                    if (e.code != 'already_connected') {
+                      rethrow;
+                    }
+                  } finally {
+                    _services = await device.discoverServices();
+                  }
+                  setState(() {
+                    _connectedDevice = device;
+                  });
                 },
               ),
             ],
