@@ -216,7 +216,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () async {
                 if (!characteristic.isNotifying) {
                   characteristic.value.listen((value) {
-                    var listOfIntToString = value.reversed.toList().join("");
+                    var listOfIntToString = value.join("");
                     int listOfIntToInt = int.parse(listOfIntToString);
                     setState(() {
                       widget.notifyValues[characteristic.uuid] = listOfIntToInt;
