@@ -144,13 +144,16 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () async {
                 var sub = characteristic.value.listen((value) {
                   var l = value.toString();
+                  var listFiltered =
+                      value.where((element) => element != 0).toList();
 
-                  for (int e in value) {
+                  for (int e in listFiltered) {
                     print(e);
                   }
 
                   setState(() {
-                    widget.readValues[characteristic.uuid] = l;
+                    widget.readValues[characteristic.uuid] =
+                        utf8.decode(listFiltered);
                   });
                 });
                 await characteristic.read();
