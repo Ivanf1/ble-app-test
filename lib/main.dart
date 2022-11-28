@@ -40,7 +40,7 @@ class MyHomePage extends StatefulWidget {
   final String title;
   final FlutterBlue flutterBlue = FlutterBlue.instance;
   final List<BluetoothDevice> devicesList = <BluetoothDevice>[];
-  final Map<Guid, List<int>> readValues = <Guid, List<int>>{};
+  final Map<Guid, String> readValues = <Guid, String>{};
   final Map<Guid, int> notifyValues = <Guid, int>{};
 
   @override
@@ -143,8 +143,10 @@ class _MyHomePageState extends State<MyHomePage> {
               child: const Text('READ', style: TextStyle(color: Colors.white)),
               onPressed: () async {
                 var sub = characteristic.value.listen((value) {
+                  var listOfIntToString =
+                      String.fromCharCodes(value.reversed.toList());
                   setState(() {
-                    widget.readValues[characteristic.uuid] = value;
+                    widget.readValues[characteristic.uuid] = listOfIntToString;
                   });
                 });
                 await characteristic.read();
