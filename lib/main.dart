@@ -41,7 +41,7 @@ class MyHomePage extends StatefulWidget {
   final FlutterBlue flutterBlue = FlutterBlue.instance;
   final List<BluetoothDevice> devicesList = <BluetoothDevice>[];
   final Map<Guid, List<int>> readValues = <Guid, List<int>>{};
-  final Map<Guid, int> notifyValues = <Guid, int>{};
+  final Map<Guid, String> notifyValues = <Guid, String>{};
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -219,7 +219,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     var listOfIntToString = value.join("");
                     int listOfIntToInt = int.parse(listOfIntToString);
                     setState(() {
-                      widget.notifyValues[characteristic.uuid] = listOfIntToInt;
+                      widget.notifyValues[characteristic.uuid] =
+                          listOfIntToString;
                     });
                   });
                   await characteristic.setNotifyValue(true);
