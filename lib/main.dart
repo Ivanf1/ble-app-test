@@ -219,7 +219,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     var listOfIntToString = value.join("");
                     int listOfIntToInt = int.parse(listOfIntToString);
                     var v = ByteData.sublistView(Uint8List.fromList(value))
-                        .getInt32(0);
+                        .getUint32(0);
                     setState(() {
                       widget.notifyValues[characteristic.uuid] = v;
                     });
