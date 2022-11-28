@@ -83,16 +83,14 @@ class _MyHomePageState extends State<MyHomePage> {
     for (BluetoothDevice device in widget.devicesList) {
       containers.add(
         SizedBox(
-          height: 160,
+          height: 60,
           child: Row(
             children: <Widget>[
-              Expanded(
-                child: Column(
-                  children: <Widget>[
-                    Text(device.name == '' ? '(unknown device)' : device.name),
-                    Text(device.id.toString()),
-                  ],
-                ),
+              Column(
+                children: <Widget>[
+                  Text(device.name == '' ? '(unknown device)' : device.name),
+                  Text(device.id.toString()),
+                ],
               ),
               TextButton(
                 child: const Text(
@@ -100,19 +98,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () async {
-                  widget.flutterBlue.stopScan();
-                  try {
-                    await device.connect();
-                  } on PlatformException catch (e) {
-                    if (e.code != 'already_connected') {
-                      rethrow;
-                    }
-                  } finally {
-                    _services = await device.discoverServices();
-                  }
-                  setState(() {
-                    _connectedDevice = device;
-                  });
+                  // widget.flutterBlue.stopScan();
+                  // try {
+                  //   await device.connect();
+                  // } on PlatformException catch (e) {
+                  //   if (e.code != 'already_connected') {
+                  //     rethrow;
+                  //   }
+                  // } finally {
+                  //   _services = await device.discoverServices();
+                  // }
+                  // setState(() {
+                  //   _connectedDevice = device;
+                  // });
                 },
               ),
             ],
