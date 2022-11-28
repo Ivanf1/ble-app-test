@@ -92,10 +92,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   Text(device.id.toString()),
                 ],
               ),
-              TextButton(
+              ElevatedButton(
                 child: const Text(
                   'Connect',
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () async {
                   widget.flutterBlue.stopScan();
@@ -138,7 +138,7 @@ class _MyHomePageState extends State<MyHomePage> {
           height: 20,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: TextButton(
+            child: ElevatedButton(
               child: const Text('READ', style: TextStyle(color: Colors.white)),
               onPressed: () async {
                 var sub = characteristic.value.listen((value) {
