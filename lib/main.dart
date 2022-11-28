@@ -143,10 +143,6 @@ class _MyHomePageState extends State<MyHomePage> {
               child: const Text('READ', style: TextStyle(color: Colors.white)),
               onPressed: () async {
                 var sub = characteristic.value.listen((value) {
-                  var listOfIntToString = String.fromCharCodes(
-                      value, 0, value.lastWhere((element) => element == 0));
-                  value.removeWhere((element) => element == 0);
-                  // var l = utf8.decode(value);
                   var l = value.toString();
 
                   for (int e in value) {
