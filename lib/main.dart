@@ -143,17 +143,17 @@ class _MyHomePageState extends State<MyHomePage> {
               child: const Text('READ', style: TextStyle(color: Colors.white)),
               onPressed: () async {
                 var sub = characteristic.value.listen((value) {
-                  var l = value.toString();
+                  // var l = value.toString();
                   var listFiltered =
                       value.where((element) => element != 0).toList();
 
-                  for (int e in listFiltered) {
-                    print(e);
-                  }
+                  // for (int e in listFiltered) {
+                  //   print(e);
+                  // }
 
                   setState(() {
                     widget.readValues[characteristic.uuid] =
-                        utf8.decode(listFiltered);
+                        String.fromCharCodes(listFiltered);
                   });
                 });
                 await characteristic.read();
